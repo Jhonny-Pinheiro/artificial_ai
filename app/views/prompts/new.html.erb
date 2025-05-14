@@ -1,6 +1,18 @@
-<div class="container">
-    <%= simple_form_for @prompt do |f| %>
-        <%= f.input :question %>
-        <%= f.submit "Preguntar", class:"btn btn-success" %>
-    <% end %>
+<div>
+    <div class="alert alert-success m-4">
+        <% @prompts.each do |pr| %>
+          <div >
+            <p><strong>Pergunta:</strong> <%= pr.question %></p>
+            <p><strong>Resposta:</strong> <%= simple_format pr.answer %></p>
+          </div>
+        <% end %>
+    <div class="container fixed-bottom mb-3">
+        <%= simple_form_for @prompt, html:{class: 'd-flex'} do |f| %>
+        <div class="input-group flex-grow-1 me-2">
+            <%= f.input_field :question, placeholder:'O que quer perguntar hoje?', class:'form-control' %>
+        </div>
+            <%= f.submit "Preguntar", class:"btn btn-success" %>
+        <% end %>
+    </div>
 </div>
+
